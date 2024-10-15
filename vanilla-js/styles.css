@@ -1,0 +1,11 @@
+#pagination-nav {
+  margin-top: 5rem;
+  display: flex;
+  cursor: pointer;
+  
+  ul {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+  }
+}

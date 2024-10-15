@@ -9,11 +9,111 @@
 </head>
 
 <body>
-
-  </form>
+  Pagination
+  <div id="item-container"></div>
+  <nav id="pagination-nav">
+    <span>Back</span>
+    <ul id="pagination-list">
+    </ul>
+    <span>Next</span>
+  </nav>
 </body>
 
 <script>
+  const items =
+    [
+      { "name": "Item 1" },
+      { "name": "Item 2" },
+      { "name": "Item 3" },
+      { "name": "Item 4" },
+      { "name": "Item 5" },
+      { "name": "Item 6" },
+      { "name": "Item 7" },
+      { "name": "Item 8" },
+      { "name": "Item 9" },
+      { "name": "Item 10" },
+      { "name": "Item 11" },
+      { "name": "Item 12" },
+      { "name": "Item 13" },
+      { "name": "Item 14" },
+      { "name": "Item 15" },
+      { "name": "Item 16" },
+      { "name": "Item 17" },
+      { "name": "Item 18" },
+      { "name": "Item 19" },
+      { "name": "Item 20" },
+      { "name": "Item 21" },
+      { "name": "Item 22" },
+      { "name": "Item 23" },
+      { "name": "Item 24" },
+      { "name": "Item 25" },
+      { "name": "Item 26" },
+      { "name": "Item 27" },
+      { "name": "Item 28" },
+      { "name": "Item 29" },
+      { "name": "Item 30" },
+      { "name": "Item 31" },
+      { "name": "Item 32" },
+      { "name": "Item 33" },
+      { "name": "Item 34" },
+      { "name": "Item 35" },
+      { "name": "Item 36" },
+      { "name": "Item 37" },
+      { "name": "Item 38" },
+      { "name": "Item 39" },
+      { "name": "Item 40" },
+      { "name": "Item 41" },
+      { "name": "Item 42" },
+      { "name": "Item 43" },
+      { "name": "Item 44" },
+      { "name": "Item 45" },
+      { "name": "Item 46" },
+      { "name": "Item 47" },
+      { "name": "Item 48" },
+      { "name": "Item 49" },
+      { "name": "Item 50" }
+    ]
+
+  const numItemsPerPage = 5
+  const maxPages = 3
+  const itemContainer = document.getElementById("item-container")
+  const nav = document.getElementById("pagination-list")
+  for (let i = 0; i < numItemsPerPage; i++) {
+    const itemElement = document.createElement("li")
+    itemElement.textContent = items[i].name
+    itemContainer.append(itemElement)
+  }
+  for (let i = 0; i < maxPages; i++) {
+    const pageNum = document.createElement("li")
+    pageNum.textContent = i
+    nav.append(pageNum)
+  }
 </script>
 
 </html>
+<!-- 
+inputs:
+- a list of items to render
+- num to display per page
+
+considerations:
+- should we fetch all items at once? typically we should fetch based on page, but for a frontend version we don't need
+to
+- how do we control the num of items to display on page?
+- what html elements do we want to use?
+- how do we want to handle when the arrow takes you to the next page of pages?
+- how many pages on the bottom do we want to show?
+- how do we make functionality such that when a page is clicked we set the appropriate items on the page?
+- do we want to disable the arrow once we've reached the end or beginning?
+
+to-do:
+- render first x elements on screen
+- figure out num pages by dividing total items by page size and rounding up
+- use nav and ul and li html elements
+- set an active state on the elements
+- depending on the active state, grab the correlating items to display
+
+- for fixed pagination nums, we need a state that keeps track of which pagination group we are in
+- update pagination group when arrow is clicked
+- pagination group determines which numbers to show
+- grey out arrows when you hit boundaries -->
