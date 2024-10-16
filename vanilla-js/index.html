@@ -76,17 +76,39 @@
 
   const numItemsPerPage = 5
   const maxPages = 3
+  let selectedPage
   const itemContainer = document.getElementById("item-container")
   const nav = document.getElementById("pagination-list")
   for (let i = 0; i < numItemsPerPage; i++) {
     const itemElement = document.createElement("li")
     itemElement.textContent = items[i].name
+    itemElement.setAttribute("key", i)
     itemContainer.append(itemElement)
   }
   for (let i = 0; i < maxPages; i++) {
     const pageNum = document.createElement("li")
     pageNum.textContent = i
     nav.append(pageNum)
+  }
+  nav.querySelectorAll("li").forEach((li) => {
+    li.addEventListener("click", () => {
+      if (selectedPage) {
+        selectedPage.removeAttribute("aria-label")
+      }
+      li.ariaLabel = true
+      selectedPage = li
+      resetItems(li.textContent)
+    })
+  })
+
+  const resetItems = (page) => {
+    const pageNum = Number(page)
+    const start = numItemsPerPage * pageNum
+    const itemContainer = document.getElementById("item-container")
+    for (let i = 0; i < numItemsPerPage; i++) {
+      const itemElement = itemContainer.querySelector(`[key='${i}']`)
+      itemElement.textContent = items[i + start].name
+    }
   }
 </script>
 

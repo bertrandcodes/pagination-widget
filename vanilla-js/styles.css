@@ -1,11 +1,18 @@
 #pagination-nav {
   margin-top: 5rem;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20rem;
   cursor: pointer;
-  
+
   ul {
     display: flex;
     gap: 1rem;
     list-style-type: none;
+
+  [aria-label="true"] {
+      font-weight: 900;
+    }
   }
 }
