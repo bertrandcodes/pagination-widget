@@ -79,17 +79,22 @@
   let selectedPage
   const itemContainer = document.getElementById("item-container")
   const nav = document.getElementById("pagination-list")
+  const itemElements = []
+
   for (let i = 0; i < numItemsPerPage; i++) {
     const itemElement = document.createElement("li")
     itemElement.textContent = items[i].name
     itemElement.setAttribute("key", i)
     itemContainer.append(itemElement)
+    itemElements.push(itemElement)
   }
+
   for (let i = 0; i < maxPages; i++) {
     const pageNum = document.createElement("li")
     pageNum.textContent = i
     nav.append(pageNum)
   }
+
   nav.querySelectorAll("li").forEach((li) => {
     li.addEventListener("click", () => {
       if (selectedPage) {
@@ -104,11 +109,9 @@
   const resetItems = (page) => {
     const pageNum = Number(page)
     const start = numItemsPerPage * pageNum
-    const itemContainer = document.getElementById("item-container")
-    for (let i = 0; i < numItemsPerPage; i++) {
-      const itemElement = itemContainer.querySelector(`[key='${i}']`)
-      itemElement.textContent = items[i + start].name
-    }
+    itemElements.forEach((itemElement, key) => {
+      itemElement.textContent = items[key + start].name
+    })
   }
 </script>
 
